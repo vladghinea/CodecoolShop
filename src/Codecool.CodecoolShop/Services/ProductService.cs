@@ -8,6 +8,7 @@ namespace Codecool.CodecoolShop.Services
     {
         private readonly IProductDao productDao;
         private readonly IProductCategoryDao productCategoryDao;
+        private readonly ISupplierDao supplierDao;
 
         public ProductService(IProductDao productDao, IProductCategoryDao productCategoryDao)
         {
