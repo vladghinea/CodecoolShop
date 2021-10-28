@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Codecool.CodecoolShop.Daos
 {
-    interface ICartDao : IDao<Cart>
+    public interface ICartDao
     {
+        void Add(Product item);
+        void Remove(Product product);
+
+        Cart Get();
+
     }
 }

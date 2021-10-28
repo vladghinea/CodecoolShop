@@ -8,6 +8,7 @@ namespace Codecool.CodecoolShop.Models
     public class User
     {        
         public Guid Id { get; } = Guid.NewGuid();
+        public Cart UserCart { get; set; } = new Cart();
         public string FirstName { get; set; }
         public string LastName { get; set; }        
         public int PhoneNumber { get; set; }

@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Codecool.CodecoolShop.Daos.Implementations;
+using Codecool.CodecoolShop.Models;
+using Codecool.CodecoolShop.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +13,39 @@ namespace Codecool.CodecoolShop.Controllers
 {
     public class CartController : Controller
     {
+        public ProductService ProductService { get; set; }
+        private readonly ILogger<ProductController> _logger;
+
+
+        public CartController(ILogger<ProductController> logger)
+        {
+            _logger = logger;
+            ProductService = new ProductService(
+                ProductDaoMemory.GetInstance(),
+                ProductCategoryDaoMemory.GetInstance(),
+                SupplierDaoMemory.GetInstance(),
+                CartDaoMemory.GetInstance());
+        }
         // GET: CartController
         public ActionResult Index()
         {
-            return View();
+            Cart cart = ProductService.GetCart();
+            return View(cart);
         }
 
         // GET: CartController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult AddToCart(int ProductId)
         {
-            return View();
+            var products = ProductService.GetAllProducts() ;
+            foreach (var product in products)
+            {
+                if (product.Id == ProductId)
+                {
+                    ProductService.GetCart().Add(product);
+                }
+            }
+
+            return Redirect("/");
         }
 
         // GET: CartController/Create
