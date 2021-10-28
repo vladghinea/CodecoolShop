@@ -64,18 +64,29 @@
     </section>
     <section class="search-sec">
         <div class="container">
-            <form action="@Url.Action("Index","Product")" method="post" novalidate="novalidate">
+            <form action="/" method="post" >
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row">
-                            @*<div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <input type="text" class="form-control search-slt" placeholder="Product">
+                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                <select class="form-control search-slt" id="Supplier" name="Supplier">
+                                    <option value="0">All</option>
+                                    @{List<string> Checks = new List<string>();}
+                                    @foreach (Supplier supplier in Model.Suppliers.ToList())
+                                    {
+
+                                        if (!Checks.Contains(supplier.Name))
+                                        {
+                                            Checks.Add(supplier.Name);
+                                            <option value="@supplier.Id">@supplier.Name</option>
+                                        }
+                                    }
+
+                                </select>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <input type="text" class="form-control search-slt" placeholder="Suplyer">
-                            </div>*@
-                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <select class="form-control search-slt" id="exampleFormControlSelect1" runat="server">
+                                <select class="form-control search-slt" id="Category" name="Category">
+                                    <option value="0">All</option>
                                     @{List<string> Check = new List<string>();}
                                     @foreach (ProductCategory product in Model.ProductCategories.ToList())
                                     {
@@ -83,14 +94,14 @@
                                         if (!Check.Contains(product.Name))
                                         {
                                             Check.Add(product.Name);
-                                            <option class="searchCategory" productId="@product.Id">@product.Name</option>
+                                            <option value="@product.Id">@product.Name</option>
                                         }
-                                     }
+                                    }
 
                                 </select>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <button runat="server" type="button" class="btn btn-danger wrn-btn" >Search</button>
+                                <button type="submit" value="Submit" class="btn btn-danger wrn-btn" >Search</button>
                             </div>
                         </div>
                     </div>
@@ -99,20 +110,6 @@
         </div>
     </section>
 </carousel>
-
-<div class="dropdown-menu-right">
-    Filter by
-
-    @{List<string> Checks = new List<string>();}
-    @foreach (ProductCategory product in Model.ProductCategories.ToList())
-    {
-
-        if (!Checks.Contains(product.Name))
-        {
-            Checks.Add(product.Name);
-            <a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Index" asp-route-Category="@product.Id">@product.Name</a>}
-    }
-</div>
 
 <div class="container">
     @foreach (var element in Model.Products.ToList())
@@ -127,6 +124,7 @@
                         @{ var num = Model.Products.ToList().IndexOf(element) + 1;}
                         @num
                     </h5>
+                    <input type="hidden" value="@element"/>
                     <h5 class="card-title">@element.Name</h5>
                     <p class="card-text">@element.Description</p>
                     <p class="card-text">Category: @element.ProductCategory.Department</p>
@@ -137,6 +135,10 @@
             </div>
         </div>
     }
+    @if (Model.Products.Count() == 0)
+            {
+                <p>No Products.</p>
+            }
 
 
 </div>
