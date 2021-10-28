@@ -25,17 +25,36 @@ namespace Codecool.CodecoolShop.Controllers
                 ProductCategoryDaoMemory.GetInstance());
         }
 
-        public IActionResult Index()
+        [HttpPost]
+        public IActionResult Index() {
+        }
+
+        public IActionResult Index(int Category = 0)
         {
-            var products = ProductService.GetProductsForCategory(1);
-            return View(products.ToList());
+            
+            ViewModel mymodel = new ViewModel();
+            if (Category == 0)
+            {
+                mymodel.ProductCategories = ProductService.GetAllCategories();
+                mymodel.Products = ProductService.GetAllProducts();
+            }
+            else
+            {
+                mymodel.ProductCategories = ProductService.GetAllCategories();
+                mymodel.Products = ProductService.GetProductsForCategory(Category);
+            }
+            //mymodel.ProductCategories = ProductService.GetAllCategories();
+            //mymodel.Products = ProductService.GetProductsForCategory(Category);
+            //var products = ProductService.GetProductsForCategory(Category);
+            //var products = ProductService.GetAllProducts();
+            //return View(products.ToList());
+            return View(mymodel);
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
-        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,8 +1,7 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
-@model List<Codecool.CodecoolShop.Models.Product>
+@model ViewModel
 <carousel>
     <div class="container">
         <div class="row pt-1 pb-1">
@@ -65,28 +64,33 @@
     </section>
     <section class="search-sec">
         <div class="container">
-            <form action="#" method="post" novalidate="novalidate">
+            <form action="@Url.Action("Index","Product")" method="post" novalidate="novalidate">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                            @*<div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                 <input type="text" class="form-control search-slt" placeholder="Product">
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                 <input type="text" class="form-control search-slt" placeholder="Suplyer">
-                            </div>
+                            </div>*@
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <select class="form-control search-slt" id="exampleFormControlSelect1">
-                                    <option>Category</option>
-                                    <option>Laptops</option>
-                                    <option>Tablets</option>
-                                    <option>TV</option>
-                                    <option>Phones</option>
+                                <select class="form-control search-slt" id="exampleFormControlSelect1" runat="server">
+                                    @{List<string> Check = new List<string>();}
+                                    @foreach (ProductCategory product in Model.ProductCategories.ToList())
+                                    {
+
+                                        if (!Check.Contains(product.Name))
+                                        {
+                                            Check.Add(product.Name);
+                                            <option class="searchCategory" productId="@product.Id">@product.Name</option>
+                                        }
+                                     }
 
                                 </select>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <button type="button" class="btn btn-danger wrn-btn">Search</button>
+                                <button runat="server" type="button" class="btn btn-danger wrn-btn" >Search</button>
                             </div>
                         </div>
                     </div>
@@ -95,8 +99,23 @@
         </div>
     </section>
 </carousel>
+
+<div class="dropdown-menu-right">
+    Filter by
+
+    @{List<string> Checks = new List<string>();}
+    @foreach (ProductCategory product in Model.ProductCategories.ToList())
+    {
+
+        if (!Checks.Contains(product.Name))
+        {
+            Checks.Add(product.Name);
+            <a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Index" asp-route-Category="@product.Id">@product.Name</a>}
+    }
+</div>
+
 <div class="container">
-    @foreach (var element in Model)
+    @foreach (var element in Model.Products.ToList())
     {
         <div class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; ">
             <div class="card">
@@ -105,7 +124,7 @@
                 <div class="card-body">
                     <h5 class="card-title text-center">
                         Product
-                        @{ var num = Model.IndexOf(element) + 1;}
+                        @{ var num = Model.Products.ToList().IndexOf(element) + 1;}
                         @num
                     </h5>
                     <h5 class="card-title">@element.Name</h5>
