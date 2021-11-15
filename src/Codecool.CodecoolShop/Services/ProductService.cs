@@ -11,12 +11,12 @@ namespace Codecool.CodecoolShop.Services
         private readonly ISupplierDao supplierDao;
         public readonly ICartDao cartDao;
 
-        public ProductService(IProductDao productDao, IProductCategoryDao productCategoryDao, ISupplierDao supplierDao, ICartDao cartDao)
+        public ProductService(IProductDao productDao, IProductCategoryDao productCategoryDao, ISupplierDao supplierDao, IUserDao userDao)
         {
             this.productDao = productDao;
             this.productCategoryDao = productCategoryDao;
-            this.supplierDao = supplierDao;
-            this.cartDao = cartDao;
+            this.supplierDao = supplierDao;            
+            this.userDao = userDao;
         }
 
         public ProductCategory GetProductCategory(int categoryId)
@@ -46,6 +46,10 @@ namespace Codecool.CodecoolShop.Services
         public IEnumerable<ProductCategory> GetAllCategories()
         {
             return this.productCategoryDao.GetAll();
+        }
+        public IEnumerable<User> GetAllUsers()
+        {
+            return this.userDao.GetAll();
         }
         public IEnumerable<Supplier> GetAllSupliers()
         {

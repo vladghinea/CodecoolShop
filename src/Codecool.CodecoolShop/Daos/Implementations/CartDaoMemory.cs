@@ -1,8 +1,8 @@
-﻿using Codecool.CodecoolShop.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+//using Codecool.CodecoolShop.Models;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 
 namespace Codecool.CodecoolShop.Daos.Implementations
 {
@@ -11,16 +11,16 @@ namespace Codecool.CodecoolShop.Daos.Implementations
         private List<Product> products = new List<Product>();
         private static CartDaoMemory instance = null;
 
-        private CartDaoMemory()
-        {
-        }
+//        private CartDaoMemory()
+//        {
+//        }
 
-        public static CartDaoMemory GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new CartDaoMemory();
-            }
+//        public static CartDaoMemory GetInstance()
+//        {
+//            if (instance == null)
+//            {
+//                instance = new CartDaoMemory();
+//            }
 
             return instance;
         }

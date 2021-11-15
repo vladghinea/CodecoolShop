@@ -1,4 +1,4 @@
-﻿using Codecool.CodecoolShop.Daos.Implementations;
+using Codecool.CodecoolShop.Daos.Implementations;
 using Codecool.CodecoolShop.Models;
 using Codecool.CodecoolShop.Services;
 using Microsoft.AspNetCore.Http;
@@ -23,10 +23,11 @@ namespace Codecool.CodecoolShop.Controllers
             ProductService = new ProductService(
                 ProductDaoMemory.GetInstance(),
                 ProductCategoryDaoMemory.GetInstance(),
-                SupplierDaoMemory.GetInstance(),
-                CartDaoMemory.GetInstance());
+                SupplierDaoMemory.GetInstance(),                
+                UserDaoMemory.GetInstance());
+            
+                
         }
-
 
         public List<Product> GetCart()
         {
