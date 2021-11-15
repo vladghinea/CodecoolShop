@@ -7,13 +7,20 @@ namespace Codecool.CodecoolShop.Models
 {
     public class Cart
     {
+        public Cart(Guid userId)
+        {
+            UserId = userId;
+            Shipping = 0;
+            Quantity = new Dictionary<Product, int>();
+        }
+
         public Guid UserId { get; set; }
         //public List<Product> Products { get; set; }
-        //public decimal SubTotal { get => Quantity.Keys.Select(p=>p.DefaultPrice).Sum();}
+        public decimal SubTotal { get => Quantity.Keys.Select(p=>p.DefaultPrice).Sum();}
         public decimal Shipping { get; set; }
         public Dictionary<Product,int> Quantity { get; set; }
-        //public decimal Vat { get => (SubTotal /100) * 19;}
-        //public decimal Total { get => SubTotal + Shipping + Vat; }
+        public decimal Vat { get => (SubTotal /100) * 19;}
+        public decimal Total { get => SubTotal + Shipping + Vat; }
         public override string ToString()
         {
             return new string($"Id: Id Name: Name Description: Description");

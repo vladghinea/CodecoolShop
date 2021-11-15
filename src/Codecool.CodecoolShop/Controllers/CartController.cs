@@ -23,25 +23,28 @@ namespace Codecool.CodecoolShop.Controllers
             ProductService = new ProductService(
                 ProductDaoMemory.GetInstance(),
                 ProductCategoryDaoMemory.GetInstance(),
-                SupplierDaoMemory.GetInstance(),
-                CartDaoMemory.GetInstance());
+                SupplierDaoMemory.GetInstance(),                
+                UserDaoMemory.GetInstance());
+            
+                
         }
         // GET: CartController
-        public ActionResult Index()
+        public ActionResult Index(User user)
         {
-            Cart cart = ProductService.GetCart();
+            
+            Cart cart = ProductService.GetCart(user);
             return View(cart);
         }
 
         // GET: CartController/Details/5
-        public ActionResult AddToCart(int ProductId)
+        public ActionResult AddToCart(int ProductId,User user)
         {
             var products = ProductService.GetAllProducts() ;
             foreach (var product in products)
             {
                 if (product.Id == ProductId)
                 {
-                    ProductService.GetCart().Add(product);
+                    ProductService.GetCart(user).Add(product);
                 }
             }
 

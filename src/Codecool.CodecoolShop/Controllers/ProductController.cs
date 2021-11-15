@@ -26,8 +26,8 @@ namespace Codecool.CodecoolShop.Controllers
             ProductService = new ProductService(
                 ProductDaoMemory.GetInstance(),
                 ProductCategoryDaoMemory.GetInstance(),
-                SupplierDaoMemory.GetInstance(),
-                CartDaoMemory.GetInstance());
+                SupplierDaoMemory.GetInstance(),                
+                UserDaoMemory.GetInstance());
         }
 
         [HttpPost]

@@ -64,7 +64,8 @@ namespace Codecool.CodecoolShop
             IProductDao productDataStore = ProductDaoMemory.GetInstance();
             IProductCategoryDao productCategoryDataStore = ProductCategoryDaoMemory.GetInstance();
             ISupplierDao supplierDataStore = SupplierDaoMemory.GetInstance();
-            
+            IUserDao userDataStore = UserDaoMemory.GetInstance();
+
 
             Supplier amazon = new Supplier{Name = "Amazon", Description = "Digital content and services"};
             supplierDataStore.Add(amazon);
@@ -122,8 +123,10 @@ namespace Codecool.CodecoolShop
             productDataStore.Add(new Product { Name = "Lenovo IdeaPad Miix 700", DefaultPrice = 479.0m, Currency = "USD", Description = "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", ProductCategory = tablet, Supplier = lenovo });
             productDataStore.Add(new Product { Name = "Apple iPad 9.7inch", DefaultPrice = 198.9m, Currency = "USD", Description = "Processor: 1.65 GHz None RAM: 32 GB DDR4 Graphics Coprocessor: M9 Wireless Type : 802.11 a/b/g/n/ac", ProductCategory = tablet, Supplier = apple });
             productDataStore.Add(new Product { Name = "Amazon Fire HD 8", DefaultPrice = 89.0m, Currency = "USD", Description = "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", ProductCategory = tablet, Supplier = amazon });
-            
-           
+
+            // user
+            User john = new User("John", "Doe", "040760368517", "john.doe@gmai.com", "New York", "5'th Avenue", "51B", "Avangard", "A", "25", "99");
+            userDataStore.Add(john);
 
 
 
