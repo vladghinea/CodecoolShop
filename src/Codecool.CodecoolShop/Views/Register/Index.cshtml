@@ -1,0 +1,136 @@
+﻿@model Codecool.CodecoolShop.Models.User
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h3 style="text-align: center; color: rgb(233,149,1); margin-top: 70px;"> Where your Dreams came true</h3>
+
+
+<div class="row main vertical-center">
+
+    <div class="main-login main-center ">
+        <h4>Register Form</h4>
+        <hr style="color:white;" />
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label asp-for="FirstName" class="label-register cols-sm-2 control-label"></label>
+                        <div class="cols-sm-10">
+                            <input asp-for="FirstName" class="input-register form-control" maxlength="25" style="border-radius:30px" required />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label asp-for="LastName" class="label-register cols-sm-2 control-label"></label>
+                        <div class="cols-sm-10">
+                            <input asp-for="LastName" class="input-register form-control" maxlength="25" style="border-radius:30px" required />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label asp-for="email" class="label-register cols-sm-2 control-label"></label>
+                        <div class="cols-sm-10">
+                            <input asp-for="email" class="input-register form-control" maxlength="30" style="width:240px;" type="email" required />
+                            <span asp-validation-for="email" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label asp-for="PhoneNumber" class="label-register cols-sm-2 control-label"></label>
+                        <div class="cols-sm-10">
+                            <input asp-for="PhoneNumber" class="input-register form-control" maxlength="13" style="width:175px;" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label asp-for="City" class="label-register cols-sm-2 control-label"></label>
+                        <input asp-for="City" maxlength="20" class="input-register form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label asp-for="Street" class="label-register cols-sm-2 control-label"></label>
+                        <input asp-for="Street" maxlength="25" class="input-register form-control" />
+                        <span asp-validation-for="Street" class="text-danger"></span>
+
+                        <label asp-for="StreetNumber" class="label-register cols-sm-2 control-label">Number</label>
+                        <div class="cols-sm-10">
+                            <input asp-for="StreetNumber" maxlength="4" class="input-register form-control" style="width:30px;" />
+                            <span asp-validation-for="StreetNumber" class="text-danger"></span>
+                        </div>
+
+                        <label asp-for="Building" class="label-register cols-sm-2 control-label"></label>
+                        <div class="cols-sm-10">
+                            <input asp-for="Building" maxlength="10" class="input-register form-control" style="width:50px;" />
+                            <span asp-validation-for="Building" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+
+
+                        <label asp-for="BuilldingStaircase" class="label-register cols-sm-2 control-label">Staircase</label>
+                        <div class="cols-sm-10">
+                            <input asp-for="BuilldingStaircase" maxlength="4" class="form-control input-register" style="width:30px;" />
+                            <span asp-validation-for="BuilldingStaircase" class="text-danger"></span>
+                        </div>
+
+                        <label asp-for="Floor" class="label-register cols-sm-2 control-label"></label>
+                        <div class="cols-sm-10">
+                            <input asp-for="Floor" maxlength="10" class="input-register form-control" style="width:30px;" />
+                            <span asp-validation-for="Floor" class="text-danger"></span>
+                        </div>
+
+
+
+
+
+                        <label asp-for="Appartment" class="label-register cols-sm-2 control-label"></label>
+                        <div class="cols-sm-10">
+                            <input asp-for="Appartment" class="input-register form-control" maxlength="3" style="width:30px;" />
+                            <span asp-validation-for="Appartment" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
