@@ -9,7 +9,7 @@ namespace Codecool.CodecoolShop.Services
         private readonly IProductDao productDao;
         private readonly IProductCategoryDao productCategoryDao;
         private readonly ISupplierDao supplierDao;
-        private readonly ICartDao cartDao;
+        public readonly ICartDao cartDao;
 
         public ProductService(IProductDao productDao, IProductCategoryDao productCategoryDao, ISupplierDao supplierDao, ICartDao cartDao)
         {
@@ -51,9 +51,9 @@ namespace Codecool.CodecoolShop.Services
         {
             return this.supplierDao.GetAll();
         }
-        public Cart GetCart()
+        public IEnumerable<Product> GetCart()
         {
-            return this.cartDao.Get();
+            return this.cartDao.GetAll();
         }
     }
 }

@@ -26,89 +26,38 @@ namespace Codecool.CodecoolShop.Controllers
                 SupplierDaoMemory.GetInstance(),
                 CartDaoMemory.GetInstance());
         }
-        // GET: CartController
+
+
+        public List<Product> GetCart()
+        {
+            return (List<Product>)ProductService.GetCart();
+        }
+
         public ActionResult Index()
         {
-            Cart cart = ProductService.GetCart();
+            List<Product> cart = (List<Product>)ProductService.GetCart();
             return View(cart);
         }
 
-        // GET: CartController/Details/5
-        public ActionResult AddToCart(int ProductId)
+        public ActionResult AddToCart(string ProductId)
         {
+            int id = Convert.ToInt32(ProductId);
             var products = ProductService.GetAllProducts() ;
-            foreach (var product in products)
-            {
-                if (product.Id == ProductId)
-                {
-                    ProductService.GetCart().Add(product);
-                }
-            }
+            Product product = products.Where(x => x.Id == id).First();
+            List<Product> cart = (List<Product>)ProductService.GetCart();
+            ProductService.cartDao.Add(product);
 
-            return Redirect("/");
+            return RedirectToAction("Index", "Product");
         }
 
         // GET: CartController/Create
-        public ActionResult Create()
+        public ActionResult Delete(int Id)
         {
-            return View();
+            ProductService.cartDao.Remove(Id);
+
+            return RedirectToAction("Index", "Product");
         }
 
-        // POST: CartController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CartController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CartController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CartController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CartController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

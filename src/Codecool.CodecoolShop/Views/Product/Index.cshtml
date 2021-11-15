@@ -124,13 +124,17 @@
                         @{ var num = Model.Products.ToList().IndexOf(element) + 1;}
                         @num
                     </h5>
-                    <input type="hidden" value="@element"/>
+                    <input type="hidden" value="@element" />
                     <h5 class="card-title">@element.Name</h5>
                     <p class="card-text">@element.Description</p>
                     <p class="card-text">Category: @element.ProductCategory.Department</p>
                     <p class="card-text">Supplier: @element.Supplier.Name</p>
                     <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2")</strong></p>
                     <a type="button" asp-area="" asp-controller="Cart" asp-action="AddToCart" asp-route-ProductId="@element.Id" class="btn btn-primary" style="float: bottom">Add To Cart</a>
+                    @if (element.Quantity > 0)
+                    {
+                        <a type="button" class="btn btn-primary" asp-controller="Cart" asp-action="Delete" asp-route-Id="@element.Id">Remove from Cart</a>
+                    }
                 </div>
             </div>
         </div>
