@@ -1,49 +1,32 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
 namespace MVVM_Shop.Pages
 {
     public class RegisterModel : PageModel
     {
         [BindProperty]
-        public string FirstName { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
 
         [BindProperty]
-        public string LastName { get; set; }
+        [StringLength(30, MinimumLength = 8)]
+        public string Password { get; set; } = string.Empty;
 
         [BindProperty]
-        public string PhoneNumber { get; set; }
-
-        [BindProperty]
-        public string email { get; set; }
-
-        [BindProperty]
-        public string City { get; set; }
-
-        [BindProperty]
-        public string Street { get; set; }
-
-        [BindProperty]
-        public string StreetNumber { get; set; }
-
-        [BindProperty]
-        public string Building { get; set; }
-
-        [BindProperty]
-        public string BuilldingStaircase { get; set; }
-
-        [BindProperty]
-        public string Floor { get; set; }
-
-        [BindProperty]
-        public string Appartment { get; set; }
+        [StringLength(30, MinimumLength = 8)]
+        [Compare("Password", ErrorMessage = "The password is not the same as previous.")]
+        public string ConfirmPassword { get; set; }
 
         public void OnGet()
         {
         }
 
-        public IActionResult OnPostCreateUser()
+        public IActionResult OnPostCreateUser([FromServices] SqlDb sql)
         {
+            sql.Users.Add(new SqlTables.User() { Email = Email, Password = Helper.HashPassword(Password) });
+            sql.SaveChanges();
             return Redirect("/");
         }
     }
