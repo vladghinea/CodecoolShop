@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MVVM_Shop.SqlTables;
@@ -30,6 +31,8 @@ namespace MVVM_Shop.Pages
             {
                 if (user.Password == Helper.HashPassword(Password))
                 {
+                    HttpContext.Session.SetString(Email, user.Email);
+
                 }
             }
             return Redirect("/");
