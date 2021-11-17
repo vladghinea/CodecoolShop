@@ -8,7 +8,7 @@
 <div class="row main vertical-center">
 
     <div class="main-login main-center ">
-        <h4>Register</h4>
+        <h4>Login</h4>
         <hr style="color:white;" />
         <form method=post>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -34,12 +34,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-danger" asp-page-handler="CreateUser" />
-            </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-danger" asp-page-handler="LoginUser" />
+                </div>
         </form>
+        <hr />
+        <p>Or</p>
+
     </div>
+    <a class="btn btn-danger" href="@Url.Page("/Register")">Register</a>
 </div>
 
 @*<div>
