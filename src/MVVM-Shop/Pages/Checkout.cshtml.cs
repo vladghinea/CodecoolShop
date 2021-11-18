@@ -115,7 +115,7 @@ namespace MVVM_Shop.Pages
                 sql.Carts.Remove(cartItem);
             }
             sql.SaveChanges();
-            return Redirect("/");
+            return Redirect("/Purchase");
         }
     }
 }
