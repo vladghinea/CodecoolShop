@@ -38,10 +38,10 @@ namespace MVVM_Shop.Pages
                 {
                     HttpContext.Session.SetString("Id", Convert.ToString(user.Id));
                     HttpContext.Session.SetString("Email", user.Email);
-
+                    return Redirect("/");
                 }
             }
-            return Redirect("/");
+            return Page();
         }
     }
 }

@@ -29,14 +29,10 @@ namespace MVVM_Shop.Pages
         public void OnGet([FromServices] SqlDb sql)
         {
             Products = sql.Products.ToList();
-            ViewData["SessionEmail"] = HttpContext.Session.GetString("Email");
-            ViewData["SessionId"] = HttpContext.Session.GetString("Id");
         }
 
         public void OnPostSearch([FromServices] SqlDb sql)
         {
-            ViewData["SessionEmail"] = HttpContext.Session.GetString("Email");
-            ViewData["SessionId"] = HttpContext.Session.GetString("Id");
             if (SupplierId == 0 && ProductCategoryId == 0)
                 Products = sql.Products.ToList();
             else
