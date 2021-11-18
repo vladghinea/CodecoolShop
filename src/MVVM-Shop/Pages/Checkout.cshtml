@@ -1,0 +1,128 @@
+﻿@page
+@model MVVM_Shop.Pages.CheckoutModel
+@{
+}
+<h3 style="text-align: center; color: rgb(233,149,1); margin-top: 70px;"> Where your Dreams came true</h3>
+
+
+<div class="row main vertical-center">
+
+    <div class="main-login main-center ">
+        <h4>Name & Address</h4>
+        <hr style="color:white;" />
+        <form method=post>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label class="label-register cols-sm-2 control-label">First Name</label>
+                        <div class="cols-sm-10">
+                            <input @*asp-for="FirstName"*@ class="input-register form-control" minLength="4" maxlength="30" style="width:240px;" type="text" required />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label class="label-register cols-sm-2 control-label">Last Name</label>
+                        <div class="cols-sm-10">
+                            <input @*asp-for="LastName"*@ class="input-register form-control" minLength="4" maxlength="30" style="width:240px;" type="text" required />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label class="label-register cols-sm-2 control-label">City</label>
+                        <div class="cols-sm-10">
+                            <input @*asp-for="LastName"*@ class="input-register form-control" minLength="4" maxlength="30" style="width:240px;" type="text" required />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label class="label-register cols-sm-2 control-label">Address</label>
+                        <div class="cols-sm-10">
+                            <input @*asp-for="LastName"*@ class="input-register form-control" min="5" maxlength="50" style="width:240px;" type="text" required />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label class="label-register cols-sm-2 control-label">PhoneNumber</label>
+                        <div class="cols-sm-10">
+                            <input @*asp-for="LastName"*@ class="input-register form-control" minLength="8" maxlength="30" style="width:240px;" type="text" required />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4>Payment</h4>
+            <hr style="color:white;" />
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label class="label-register cols-sm-2 control-label">Name On The Card</label>
+                        <div class="cols-sm-10">
+                            <input @*asp-for="LastName"*@ class="input-register form-control" minLength="8" maxlength="40" style="width:240px;" type="text" required />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label class="label-register cols-sm-2 control-label">Card Number</label>
+                        <div class="cols-sm-10">
+                            <input @*asp-for="LastName"*@ class="input-register form-control" minLength="16" maxlength="16" style="width:240px;" type="num" required />
+                            <span class="text-danger"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label class="label-register cols-sm-2 control-label">Expiration Date</label>
+                        <div class="cols-sm-10">
+                            <input @*asp-for="LastName"*@ class="input-register form-control" style="width:240px;" type="date" required />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <label class="label-register cols-sm-2 control-label">Ccv/Cvv</label>
+                        <div class="cols-sm-10">
+                            <input @*asp-for="LastName"*@ class="input-register form-control" minLength="3" maxlength="3" style="width:240px;" type="text" required />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Purchase" class="btn btn-danger" asp-page-handler="Payment" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
