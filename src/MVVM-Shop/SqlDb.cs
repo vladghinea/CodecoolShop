@@ -15,6 +15,9 @@ namespace MVVM_Shop
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<DeliveryInfo> DeliveryInfos { get; set;}
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,6 +26,9 @@ namespace MVVM_Shop
             modelBuilder.Entity<Product>().ToTable("Products");
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Cart>().ToTable("Carts");
+            modelBuilder.Entity<DeliveryInfo>().ToTable("DeliveryInfos");
+            modelBuilder.Entity<Order>().ToTable("Orders");
+            modelBuilder.Entity<OrderItem>().ToTable("OrderItems");
         }
     }
 }

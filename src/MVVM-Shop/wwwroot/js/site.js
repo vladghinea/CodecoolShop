@@ -12,24 +12,30 @@ async function AddToCart(ProductId) {
 }
 
 
-function checkAddress() {
+async function checkAddress() {
     const selection = document.getElementById('selectAdressCheckout');
-    var option5 = document.createElement('option');
-   
-    option5.innerHTML = "Dumbrava5";
-    selection.appendChild(option5)
 
     const firstnameField = document.getElementById('firstNameOnCheckout');
     const lastnameField = document.getElementById('lastNameOnCheckout');
     const cityField = document.getElementById('cityOnCheckout');
     const addressField = document.getElementById('addressOnCheckout');
     const phoneField =  document.getElementById('phoneOnCheckout'); 
-    console.log(selection);
-    selection.addEventListener('click', event => {
-        alert(selection.options.text);
-    });
+
+    if (selection.value != 0) {
+        const result = await fetch(`/DeliveryInfo/${selection.value}`)
+        const jsonResult = await result.json();
+        firstnameField.value = jsonResult.firstName;
+        lastnameField.value = jsonResult.lastName;
+        cityField.value = jsonResult.city;
+        addressField.value = jsonResult.address;
+        phoneField.value = jsonResult.phoneNumber;
+    }
+    else {
+        firstnameField.value = "";
+        lastnameField.value = "";
+        cityField.value = "";
+        addressField.value = "";
+        phoneField.value = "";
+    }
 }
-
-
-checkAddress();
 

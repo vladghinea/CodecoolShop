@@ -14,18 +14,20 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <select id="selectAdressCheckout" name="address">
-                    <option>new address</option>
-                    <option> old address 1</option>
-                    <option> old address 2</option>
+                <select id="selectAdressCheckout" onchange="checkAddress()" asp-for="SelectedAddress">
+                    <option value="0">New Address</option>
+                    @foreach (var deliveryinfo in Model.DeliveryInfos)
+                    {
+                        <option value="@deliveryinfo.Id">@deliveryinfo.Address</option>
+                    }
                 </select>
                 <br /><br />
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <label class="label-register cols-sm-2 control-label">First Name</label>
                         <div class="cols-sm-10">
-                            <input id="firstNameOnCheckout" @*asp-for="FirstName"*@ class="input-register form-control" minLength="4" maxlength="30" style="width:240px;" type="text" required />
-                            <span class="text-danger"></span>
+                            <input id="firstNameOnCheckout" asp-for="FirstName" class="input-register form-control" style="width:240px;" type="text" required />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -35,8 +37,8 @@
                     <div class="input-group">
                         <label class="label-register cols-sm-2 control-label">Last Name</label>
                         <div class="cols-sm-10">
-                            <input id="lastNameOnCheckout" @*asp-for="LastName"*@ class="input-register form-control" minLength="4" maxlength="30" style="width:240px;" type="text" required />
-                            <span class="text-danger"></span>
+                            <input id="lastNameOnCheckout" asp-for="LastName" class="input-register form-control" style="width:240px;" type="text" required />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -46,8 +48,8 @@
                     <div class="input-group">
                         <label class="label-register cols-sm-2 control-label">City</label>
                         <div class="cols-sm-10">
-                            <input id="cityOnCheckout" @*asp-for="LastName"*@ class="input-register form-control" minLength="4" maxlength="30" style="width:240px;" type="text" required />
-                            <span class="text-danger"></span>
+                            <input id="cityOnCheckout" asp-for="City" class="input-register form-control" style="width:240px;" type="text" required />
+                            <span asp-validation-for="City" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -57,8 +59,8 @@
                     <div class="input-group">
                         <label class="label-register cols-sm-2 control-label">Address</label>
                         <div class="cols-sm-10">
-                            <input id="addressOnCheckout" @*asp-for="LastName"*@ class="input-register form-control" min="5" maxlength="50" style="width:240px;" type="text" required />
-                            <span class="text-danger"></span>
+                            <input id="addressOnCheckout" asp-for="Address" class="input-register form-control" style="width:240px;" type="text" required />
+                            <span asp-validation-for="Address" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -68,8 +70,8 @@
                     <div class="input-group">
                         <label class="label-register cols-sm-2 control-label">PhoneNumber</label>
                         <div class="cols-sm-10">
-                            <input id="phoneOnCheckout" @*asp-for="LastName"*@ class="input-register form-control" minLength="8" maxlength="30" style="width:240px;" type="text" required />
-                            <span class="text-danger"></span>
+                            <input id="phoneOnCheckout" asp-for="PhoneNumber" class="input-register form-control" style="width:240px;" type="text" required />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -81,8 +83,8 @@
                     <div class="input-group">
                         <label class="label-register cols-sm-2 control-label">Name On The Card</label>
                         <div class="cols-sm-10">
-                            <input @*asp-for="LastName"*@ class="input-register form-control" minLength="8" maxlength="40" style="width:240px;" type="text" required />
-                            <span class="text-danger"></span>
+                            <input asp-for="NameOnTheCard" class="input-register form-control" minLength="8" maxlength="40" style="width:240px;" type="text" required />
+                            <span asp-validation-for="NameOnTheCard" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -92,8 +94,8 @@
                     <div class="input-group">
                         <label class="label-register cols-sm-2 control-label">Card Number</label>
                         <div class="cols-sm-10">
-                            <input @*asp-for="LastName"*@ class="input-register form-control" minLength="16" maxlength="16" style="width:240px;" type="num" required />
-                            <span class="text-danger"></span>
+                            <input asp-for="CardNumber" class="input-register form-control" minLength="16" maxlength="16" style="width:240px;" type="num" required />
+                            <span asp-validation-for="CardNumber" class="text-danger"></span>
 
                         </div>
                     </div>
@@ -104,8 +106,8 @@
                     <div class="input-group">
                         <label class="label-register cols-sm-2 control-label">Expiration Date</label>
                         <div class="cols-sm-10">
-                            <input @*asp-for="LastName"*@ class="input-register form-control" style="width:240px;" type="date" required />
-                            <span class="text-danger"></span>
+                            <input asp-for="ExpirationDate" class="input-register form-control" style="width:240px;" type="date" required />
+                            <span asp-validation-for="ExpirationDate" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -115,15 +117,15 @@
                     <div class="input-group">
                         <label class="label-register cols-sm-2 control-label">Ccv/Cvv</label>
                         <div class="cols-sm-10">
-                            <input @*asp-for="LastName"*@ class="input-register form-control" minLength="3" maxlength="3" style="width:240px;" type="text" required />
-                            <span class="text-danger"></span>
+                            <input asp-for="CVV" class="input-register form-control" minLength="3" maxlength="3" style="width:240px;" type="text" required />
+                            <span asp-validation-for="CVV" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Purchase" class="btn btn-danger" asp-page-handler="Payment" />
+                <input type="submit" value="Purchase" class="btn btn-danger" asp-page-handler="Checkout" />
             </div>
         </form>
     </div>
