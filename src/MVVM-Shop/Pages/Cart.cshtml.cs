@@ -41,9 +41,6 @@ namespace MVVM_Shop.Pages
             OnGet(sql);
         }
 
-        private int GetUserId()
-        {
-            return Convert.ToInt32(HttpContext.Session.GetString("Id"));
-        }
+        private int GetUserId() => Convert.ToInt32(HttpContext.Session.GetString("Id"));
     }
 }
