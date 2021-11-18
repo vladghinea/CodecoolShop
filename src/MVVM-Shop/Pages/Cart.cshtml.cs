@@ -11,19 +11,27 @@ namespace MVVM_Shop.Pages
 {
     public class CartModel : PageModel
     {
-        public List<Cart> CartItems { get; set; }
-
-
+        //public List<Cart> CartItems { get; set; }
+        SqlDb _sql;
+        public CartModel([FromServices] SqlDb sql)
+        {
+            _sql = sql;
+        }
+        public List<Cart> CartItems
+        {
+            get
+            {
+                return _sql.Carts.Where(x => x.UserId == GetUserId()).ToList();
+            }
+        }
         public void OnGet([FromServices] SqlDb sql)
         {
-            CartItems = sql.Carts.Where(x => x.UserId == GetUserId()).ToList();
         }
 
         public void OnGetIncreaseQuantity([FromServices] SqlDb sql, int ProductId)
         {
             sql.Carts.FirstOrDefault(x => x.UserId == GetUserId() && x.ProductId == ProductId).Quantity += 1;
             sql.SaveChanges();
-            OnGet(sql);
         }
 
         public void OnGetDecreaseQuantity([FromServices] SqlDb sql, int ProductId)
@@ -38,7 +46,6 @@ namespace MVVM_Shop.Pages
                 product.Quantity -= 1;
             }
             sql.SaveChanges();
-            OnGet(sql);
         }
 
         private int GetUserId() => Convert.ToInt32(HttpContext.Session.GetString("Id"));

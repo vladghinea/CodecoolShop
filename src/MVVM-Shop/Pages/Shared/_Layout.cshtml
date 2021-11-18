@@ -13,10 +13,8 @@
 </head>
 <body>
     <header>
-        <search class="position-sticky">
 
-        </search>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" >
 
             <div class="container">
                 <a class="navbar-brand" href="@Url.Page("/Index")">Codecool.CodecoolShop</a>
@@ -35,7 +33,14 @@
                                 <a class="nav-link text-dark" asp-controller="Logout" asp-action="Index">Logout @Context.Session.GetString("Email")</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="@Url.Page("/Cart")"><i class="fas fa-shopping-cart"></i> @(sql.Carts.Where(x => x.UserId == Convert.ToInt32(Context.Session.GetString("Id"))).Sum(x => x.Quantity)) items</a>
+                                @* <a class="nav-link text-dark" class="btn btn-link navbar-main-btn" href="@Url.Page("/Cart")"><i class="fas fa-shopping-cart"></i> <i id="counterPlace">@(sql.Carts.Where(x => x.UserId == Convert.ToInt32(Context.Session.GetString("Id"))).Sum(x => x.Quantity))</i></a>*@
+                                <a href="@Url.Page("/Cart")" id="counterPlace" class="nav-link text-dark">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    @if ((sql.Carts.Where(x => x.UserId == Convert.ToInt32(Context.Session.GetString("Id"))).Sum(x => x.Quantity) != 0))
+                                    {
+                                        <span class="jewel jewel-danger">@(sql.Carts.Where(x => x.UserId == Convert.ToInt32(Context.Session.GetString("Id"))).Sum(x => x.Quantity))</span>}
+                                </a>
+
                             </li>
                         }
                         else

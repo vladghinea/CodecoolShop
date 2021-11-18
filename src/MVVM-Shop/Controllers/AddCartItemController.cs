@@ -30,5 +30,17 @@ namespace MVVM_Shop.Controllers
                 return Json(false);
             }
         }
+
+        [Route("/Cart/GetCartItems")]
+        public int GetCart([FromServices] SqlDb sql)
+        {
+            int userId = String.IsNullOrEmpty(HttpContext.Session.GetString("Id")) ? 0 : Convert.ToInt32(HttpContext.Session.GetString("Id"));
+            int products = 0;
+            if (userId != 0)
+            {
+                products = sql.Carts.Where(x => x.UserId == userId).Sum(x => x.Quantity);
+            }
+            return products;
+        }
     }
 }
