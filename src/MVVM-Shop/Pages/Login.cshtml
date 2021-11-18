@@ -1,5 +1,5 @@
 ﻿@page
-@model MVVM_Shop.Pages.RegisterModel
+@model MVVM_Shop.Pages.LoginModel
 @{
 }
 <h3 style="text-align: center; color: rgb(233,149,1); margin-top: 70px;"> Where your Dreams came true</h3>
@@ -37,12 +37,13 @@
                 <div class="form-group">
                     <input type="submit" value="Login" class="btn btn-danger" asp-page-handler="LoginUser" />
                 </div>
+            </div>
         </form>
         <hr />
         <p>Or</p>
-
+        <a class="btn btn-danger" href="@Url.Page("/Register")">Register</a>
     </div>
-    <a class="btn btn-danger" href="@Url.Page("/Register")">Register</a>
+ 
 </div>
 
 @*<div>

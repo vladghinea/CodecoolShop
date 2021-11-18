@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System;
@@ -19,6 +20,8 @@ namespace MVVM_Shop.Pages
 
         public void OnGet()
         {
+            //ViewData["SessionEmail"] = HttpContext.Session.GetString("Email");
+            //ViewData["SessionId"] = HttpContext.Session.GetString("Id");
         }
     }
 }

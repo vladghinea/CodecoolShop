@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Session;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,12 +26,7 @@ namespace MVVM_Shop
         {
             services.AddDistributedMemoryCache();
 
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
-            });
+            services.AddSession();
             services.AddRazorPages();
             services.AddDbContext<SqlDb>(options =>
             {
