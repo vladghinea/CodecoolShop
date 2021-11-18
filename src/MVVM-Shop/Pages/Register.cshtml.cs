@@ -22,9 +22,6 @@ namespace MVVM_Shop.Pages
 
         public void OnGet()
         {
-
-            ViewData["SessionEmail"] = HttpContext.Session.GetString("Email");
-            ViewData["SessionId"] = HttpContext.Session.GetString("Id");
         }
 
         public IActionResult OnPostCreateUser([FromServices] SqlDb sql)
