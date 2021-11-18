@@ -9,6 +9,14 @@ async function AddToCart(ProductId) {
     if (!jsonResult) {
         window.location.pathname = "/Login";
     }
+    else {
+        result1 = await fetch("/Cart/GetCartItems");
+        jsonResult1 = await result1.json();
+        var counterPlace = document.getElementById("counterPlace");
+        counterPlace.innerHTML = `<i class="fas fa-shopping-cart"></i>
+                                        <span class="jewel jewel-danger">${jsonResult1}</span>
+                                    `
+    }
 }
 
 
