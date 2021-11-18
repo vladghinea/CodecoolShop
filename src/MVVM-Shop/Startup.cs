@@ -30,6 +30,7 @@ namespace MVVM_Shop
             services.AddRazorPages();
             services.AddDbContext<SqlDb>(options =>
             {
+                options.UseLazyLoadingProxies();
                 options.UseSqlServer(Configuration.GetConnectionString("CodecoolDbContext"));
             });
             services.AddScoped<SqlDb>();

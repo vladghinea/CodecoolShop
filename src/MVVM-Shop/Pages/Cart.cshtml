@@ -4,26 +4,27 @@
 }
 
 @{
-    decimal totalPrice = 0;
-
     <table class="table">
         <tr class="col">
             <th class="col-1">ITEM</th>
-            <th class="col-2">QUANTITY</th>
-            <th class="col-3">PRICE</th>
+            <th class="col-2">UNIT PRICE</th>
+            <th class="col-3">QUANTITY</th>
+            <th class="col-4">PRICE</th>
         </tr>
-
-                <tr class="col">
-                    <th class="col-1"> Name </th>
-                    <th class="col-2"> Quantity</th>
-                    <th class="col-3"> Quantity * Price </th>
-                </tr>
-
+        @foreach (var cartItem in Model.CartItems)
+        {
+            <tr class="col">
+                <th class="col-1">@cartItem.Product.Name </th>
+                <th class="col-2">@cartItem.Product.DefaultPrice @cartItem.Product.Currency</th> 
+                <th class="col-3"><a asp-page-handler="DecreaseQuantity" asp-route-ProductId="@cartItem.ProductId">-</a> @cartItem.Quantity <a asp-page-handler="IncreaseQuantity" asp-route-ProductId="@cartItem.ProductId">+</a></th>
+                <th class="col-4">@(cartItem.Quantity * cartItem.Product.DefaultPrice) @cartItem.Product.Currency</th>
+            </tr>
+        }
     </table>
 
 }
 
 
 <div class="d-table-cell">
-    <b>Total Cart Price: @totalPrice</b>
+    <b>Total Cart Price: @Model.CartItems.Sum(cartItem => cartItem.Quantity * cartItem.Product.DefaultPrice)</b>
 </div>

@@ -146,7 +146,7 @@
                     <p class="card-text">Category: @product.Category.Name</p>
                     <p class="card-text">Supplier: @product.Suplier.Name</p>
                     <p class="card-text text-center"><strong>Price: @product.DefaultPrice @product.Currency</strong></p>
-                    <button class="btn btn-primary" style="float: bottom;">Add To Cart</button>
+                    <button class="btn btn-primary" onclick="AddToCart(@product.Id)" style="float: bottom;">Add To Cart</button>
                 </div>
             </div>
         </div>

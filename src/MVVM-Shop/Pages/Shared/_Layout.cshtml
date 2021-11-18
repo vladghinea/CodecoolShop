@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SqlDb sql
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,25 +29,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="@Url.Page("/Index")">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="@Url.Page("/Privacy")">Privacy</a>
-                        </li>
-                        @if ( Context.Session.GetString("Email") != null)
-            {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Logout" asp-action="Index">Logout @Context.Session.GetString("Email")</a>
-                    </li>
-            }
-            else
-            {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="@Url.Page("/Login")">Login</a>
-                    </li>
-            }
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="@Url.Page("/Index")"><i class="fas fa-shopping-cart"></i>@*{{List.cart}}*@</a>
-                        </li>
+                        @if (Context.Session.GetString("Email") != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Logout" asp-action="Index">Logout @Context.Session.GetString("Email")</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="@Url.Page("/Cart")"><i class="fas fa-shopping-cart"></i> @(sql.Carts.Where(x => x.UserId == Convert.ToInt32(Context.Session.GetString("Id"))).Sum(x => x.Quantity)) items</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="@Url.Page("/Login")">Login</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -62,7 +60,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - Codecool.CodecoolShop - <a asp-area="" asp-controller="Product" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - Codecool.CodecoolShop
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
