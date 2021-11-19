@@ -47,3 +47,38 @@ async function checkAddress() {
     }
 }
 
+function productModal() {
+    const productCards = document.querySelectorAll(".product-card");
+    const productTitle = document.querySelector('.productTitle ');
+    const productDescription = document.querySelector('.productDescription');
+    const wrap = document.createElement('div');
+    wrap.classList.add('wrap-modal');
+    wrap.classList.add('invisible');
+    document.body.appendChild(wrap);
+    productTitle.style.cursor = "pointer";
+    
+    productCards.forEach(card => card.addEventListener("click", event => {
+        if (event.target.classList.contains('click-for-modal')) {
+            
+            card.classList.toggle('modal');
+            wrap.classList.toggle('invisible')
+            productTitle.classList.toggle('truncate_height');
+            productDescription.classList.toggle('truncate_height_body')
+            
+            if (!card.classList.contains('modal')) {
+                
+                
+            }
+            else {
+               
+               
+                
+            }
+            
+        }      
+        
+    }))
+   
+}
+productModal();
+

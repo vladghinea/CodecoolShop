@@ -5,11 +5,11 @@
     ViewData["Title"] = "Home page";
 }
 
-<carousel>
+<carousel style="padding-top: 25%">
     <div class="container">
         <div class="row pt-1 pb-1">
             <div class="col-lg-12">
-                <h4 class="text-center">Where your Dreams came true</h4>
+                <h4 class="text-center" style="margin-top: 7%">Where your Dreams come true</h4>
                 <h6 class="text-center">imagine yourself with an awesome new magic in your life</h6>
             </div>
         </div>
@@ -141,12 +141,14 @@
                         Product @product.Id
                     </h5>
                     <input type="hidden" value="" />
-                    <h5 class="card-title">@product.Name</h5>
-                    <p class="card-text truncate">@product.Description</p>
+                    <h5 class="card-title productTitle truncate_height click-for-modal">@product.Name</h5>
+                    <div class="container description">
+                        <p class="card-text productDescription truncate_height_body">@product.Description</p>
+                    </div>
                     <p class="card-text">Category: @product.Category.Name</p>
                     <p class="card-text">Supplier: @product.Suplier.Name</p>
-                    <p class="card-text text-center"><strong>Price: @product.DefaultPrice @product.Currency</strong></p>
-                    <button class="btn btn-primary" onclick="AddToCart(@product.Id)" style="float: bottom;">Add To Cart</button>
+                    <p class="card-text text-center"><strong>Price: @(product.DefaultPrice.ToString("0.00")) @product.Currency</strong></p>
+                    <button class="btn btn-primary red-hover" onclick="AddToCart(@product.Id)" style="float: bottom;">Add To Cart</button>
                 </div>
             </div>
         </div>

@@ -14,7 +14,7 @@
 <body>
     <header>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" >
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="position:fixed; z-index: 1000; width: 100%; top: 0px;">
 
             <div class="container">
                 <a class="navbar-brand" href="@Url.Page("/Index")">Codecool.CodecoolShop</a>
@@ -30,7 +30,7 @@
                         @if (Context.Session.GetString("Email") != null)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Logout" asp-action="Index">Logout @Context.Session.GetString("Email")</a>
+                                <a class="nav-link text-dark" asp-controller="Logout" asp-action="Index"><span class="logout-nav">Logout</span> @Context.Session.GetString("Email")</a>
                             </li>
                             <li class="nav-item">
                                 @* <a class="nav-link text-dark" class="btn btn-link navbar-main-btn" href="@Url.Page("/Cart")"><i class="fas fa-shopping-cart"></i> <i id="counterPlace">@(sql.Carts.Where(x => x.UserId == Convert.ToInt32(Context.Session.GetString("Id"))).Sum(x => x.Quantity))</i></a>*@
@@ -72,5 +72,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

@@ -256,8 +256,18 @@ label-register {
     margin: 15px;
 }
 
-.truncate {
-    height: 50px;
+.truncate_height {
+    height: 28px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+.truncate_height:hover{
+ color:Highlight
+}
+.truncate_height_body {
+    height: 18px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -266,3 +276,143 @@ label-register {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
+
+.card_checkout {    
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    padding : 10px;
+}
+.total_price {
+    margin : 0 50px 50px 50px;
+    padding: 2em;
+}
+.area-button-check {
+    margin: 0 55% 0 45%;
+    padding: 0;
+}
+.slim-text{
+    font-weight:normal;
+}
+table {
+    padding: 10px;
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 1px solid black;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.styled-table tr.tbody:hover {
+    
+    background-color: #ffc9e4;
+}
+/*.styled-table tbody td:nth-of-type(even):hover {
+    background-color: #ffc9e4; #d3d3d3;
+}
+.styled-table td.tbody:hover {
+    background-color: #ffc9e4; #dddddd;
+}*/
+.styled-table .thead {
+    background-color: black;
+    color: white;
+}
+.green-hover:hover {
+    background-color: green;
+}
+.red-hover:hover {
+    background-color: red;
+}
+.modal {
+    position: fixed;
+    display: block;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 50px;
+    margin: 200px;
+    top: 0;
+    bottom: 500px;
+    left:7%;
+    width:65%;
+    height: 50%;
+    z-index: 2000;
+}
+
+    .modal.productDescription {
+        padding: 80px;
+        white-space: nowrap;
+        overflow: visible;
+        text-overflow: initial;
+    }
+
+.description{
+    margin: 20px;
+    padding: 0 20px;
+}
+
+    .wrap-modal {
+        position: fixed;
+        display: block;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-pack: center;
+        justify-content: center;
+        margin: 0;
+        top: 0;
+        left: 0;
+        background-color: black;
+        opacity: 0.5;
+        width: 100%;
+        height: 100%;
+        z-index: 1500;
+    }
+
+.invisible {
+    display: none;
+}
+
+.modal.truncate_height_body {
+    height: 50px;
+    white-space: nowrap;
+    overflow: visible ;
+    text-overflow: initial;
+    
+}
+
+nav li:hover{
+    color: red;
+    cursor: pointer;
+}
+.logout-nav {
+    margin: 0 20px;
+}
+.main-login{
+    padding-bottom:30px;
+}
+

@@ -3,10 +3,10 @@
 @{
 }
 
-<div class="main-center">
+<div class="card card_checkout" style="margin-top: 7%;">
     @{
-        <table class="table" style="margin:10px">
-            <tr class="col">
+        <table class="table styled-table " style="margin: 10px 0 10px 0; padding-top: 7%;">
+            <tr class="col thead">
                 <th class="col-1">ITEM</th>
                 <th class="col-2">UNIT PRICE</th>
                 <th class="col-3">QUANTITY</th>
@@ -14,11 +14,11 @@
             </tr>
             @foreach (var cartItem in Model.CartItems)
             {
-                <tr class="col">
-                    <th class="col-1">@cartItem.Product.Name </th>
-                    <th class="col-2">@cartItem.Product.DefaultPrice @cartItem.Product.Currency</th>
-                    <th class="col-3"><a asp-page-handler="DecreaseQuantity" asp-route-ProductId="@cartItem.ProductId">-</a> @cartItem.Quantity <a asp-page-handler="IncreaseQuantity" asp-route-ProductId="@cartItem.ProductId">+</a></th>
-                    <th class="col-4">@(cartItem.Quantity * cartItem.Product.DefaultPrice) @cartItem.Product.Currency</th>
+                <tr class="col tbody">
+                    <td class="col-1">@cartItem.Product.Name </td>
+                    <td class="col-2 slim-text">@(Convert.ToDecimal(cartItem.Product.DefaultPrice).ToString("0.00")) @cartItem.Product.Currency</td>
+                    <td class="col-3"><a asp-page-handler="DecreaseQuantity" asp-route-ProductId="@cartItem.ProductId">-</a> @cartItem.Quantity <a asp-page-handler="IncreaseQuantity" asp-route-ProductId="@cartItem.ProductId">+</a></td>
+                    <td class="col-4 slim-text">@(cartItem.Quantity * Convert.ToDecimal(cartItem.Product.DefaultPrice.ToString("0.00"))) @cartItem.Product.Currency</td>
                 </tr>
             }
         </table>
@@ -26,13 +26,21 @@
     }
 
 
-    <div class="d-table-cell">
-        <b>Total Cart Price: @Model.CartItems.Sum(cartItem => cartItem.Quantity * cartItem.Product.DefaultPrice)</b>
+    <div class="d-table-cell total_price">
+        <p> Cart Price:  @Model.CartItems.Sum(cartItem => cartItem.Quantity * cartItem.Product.DefaultPrice).ToString("0.00") USD</p>
+        <p>VAT Cart Price:  @(((decimal)@Model.CartItems.Sum(cartItem => cartItem.Quantity * cartItem.Product.DefaultPrice)==0 ? 0: (decimal)@Model.CartItems.Sum(cartItem => cartItem.Quantity * cartItem.Product.DefaultPrice) / 100 * 19).ToString("0.00")) USD</p>
+
+        <hr style="border-width: initial; border-color: black; width: 25%; text-align: left; margin-left:0; padding-left:0;" />
+        <b>Total Cart Price:  @(((decimal)@Model.CartItems.Sum(cartItem => cartItem.Quantity * cartItem.Product.DefaultPrice) == 0 ? 0 : (decimal)@Model.CartItems.Sum(cartItem => cartItem.Quantity * cartItem.Product.DefaultPrice) + (decimal)@Model.CartItems.Sum(cartItem => cartItem.Quantity * cartItem.Product.DefaultPrice) / 100 * 19).ToString("0.00")) USD</b>
     </div>
     <br />
+
     @if (Model.CartItems.Sum(cartItem => cartItem.Quantity * cartItem.Product.DefaultPrice) != 0)
     {
-        <a class="btn btn-danger" href="@Url.Page("/Checkout")">Checkout</a>
+        <div class="align-content-center area-button-check">
+            <a class="btn btn-success" href="@Url.Page("/Checkout")">Checkout</a>
+        </div>
     }
+    <br /><br /><br />
 
 </div>
