@@ -21,7 +21,7 @@ namespace MVVM_Shop
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Suplier>().ToTable("Supliers");
+            modelBuilder.Entity<Suplier>().ToTable("Suppliers");
             modelBuilder.Entity<ProductCategory>().ToTable("ProductCategories");
             modelBuilder.Entity<Product>().ToTable("Products");
             modelBuilder.Entity<User>().ToTable("Users");

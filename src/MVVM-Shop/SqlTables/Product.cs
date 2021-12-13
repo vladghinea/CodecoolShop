@@ -31,9 +31,9 @@ namespace MVVM_Shop.SqlTables
         [Required]
         public int SuplierId { get; set; }
 
-        [Required]
-        [Column(TypeName = "image")]
-        public byte[] Image { get; set; }
+        //[Required]
+        //[Column(TypeName = "image")]
+        //public byte[] Image { get; set; }
 
         [Required]
         public virtual ProductCategory Category { get; set; }
